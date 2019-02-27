@@ -11,8 +11,10 @@ namespace direktoriStudent.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        //lookup
+        //lookup Lecturer
         public int LecturerID { get; set; }
         public Lecturer Lecturer { get; set; }
+
+
     }
 }

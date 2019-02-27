@@ -48,7 +48,7 @@ namespace direktoriStudent.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
-            ViewData["LecturerID"] = new SelectList(_context.Set<Lecturer>(), "LecturerID", "LecturerID");
+            ViewData["LecturerID"] = new SelectList(_context.Set<Lecturer>(), "LecturerID", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace direktoriStudent.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LecturerID"] = new SelectList(_context.Set<Lecturer>(), "LecturerID", "LecturerID", student.LecturerID);
+            ViewData["LecturerID"] = new SelectList(_context.Set<Lecturer>(), "LecturerID", "Name", student.LecturerID);
             return View(student);
         }
 
