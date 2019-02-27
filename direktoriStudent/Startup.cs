@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using direktoriStudent.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using direktoriStudent.Services.LOCAL;
 
 namespace direktoriStudent
 {
@@ -39,7 +40,7 @@ namespace direktoriStudent
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            services.AddTransient<IRepository, Repository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

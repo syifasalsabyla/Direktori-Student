@@ -1,0 +1,125 @@
+﻿@model IEnumerable<direktoriStudent.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lecturer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lecturer.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="container">
+    <br />
+    <div style="width:90%; margin:0 auto;">
+        <table id="id_table" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Lecturer</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+
+
+        $(document).ready(function () {
+            //GetTable()
+            $('#table_id').DataTable();
+
+        });
+    </script>
+}
+
+@*function GetTable() {
+                $.ajax({
+                    type: 'GET',
+                    crossDomain: true,
+                    url: '/api/student',
+                    success: function (data) {
+                        console.log(data);
+                        var table = $('#id_table').DataTable()
+                        table.destroy();
+                        $('#id_table').DataTable({
+                            'paging': true,
+                            'lengthChange': false,
+                            'searching': true,
+                            'ordering': true,
+                            'info': true,
+                            'scrollX': true,
+                            'scrollY': 200,
+                            'scrollCollapse': true,
+                            'data': data,
+                            'columns': [{ data: 'studentId'},
+                                { data: 'firstname' },
+                                { data: 'lastname' },
+                                {data: 'lecturerId'},
+                            {
+                                "render": function (data, type, full, meta) { return '<a class="btn btn-warning" href="/Student/details/' + full.studentId + '">Details</a>'; }
+                            },
+                            {
+                                "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Student/edit/' + full.studentId + '">Edit</a>'; }
+                            },
+                            {
+                                "render": function (data, type, full, meta) { return '<a class="btn btn-danger" href="/Student/delete/' + full.studentId + '">Delete</a>'; }
+                            },
+                            ],
+
+                            "pagingType": "full_numbers",
+                            language: {
+                                search: "_INPUT_",
+                                searchPlaceholder: "Search records",
+                            }
+                        })
+                    }
+                })
+        }
+        </script>
+    }*@
